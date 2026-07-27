@@ -1,26 +1,80 @@
 @import 'tailwindcss';
 
+/* Class-based dark mode variant for Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
+
+/* Color tokens — Light mode */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fdfdfd;
+  --surface: #f7fafa;
+  --foreground: #33323e;
+  --muted: #6b7280;
+  --primary: #22a1ae;
+  --primary-fg: #ffffff;
+  --accent: #22a1ae;
+  --border: #e2e8ea;
+  --destructive: #dc2626;
+  --success: #16a34a;
+
+  /* Hero gradient — mint-to-blue, multi-layer for depth */
+  --hero-gradient:
+    radial-gradient(
+      ellipse at 82% 5%,
+      rgba(94, 216, 166, 0.55) 0%,
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse at 5% 95%,
+      rgba(20, 50, 70, 0.7) 0%,
+      transparent 48%
+    ),
+    linear-gradient(148deg, #1a4f68 0%, #3a9abb 45%, #4dc99a 75%, #5ed8a6 100%);
+}
+
+/* Color tokens — Dark mode */
+.dark {
+  --background: #0f1117;
+  --surface: #161b22;
+  --foreground: #f0fafa;
+  --muted: #8b9eb0;
+  --primary: #2bbccb;
+  --primary-fg: #ffffff;
+  --accent: #2bbccb;
+  --border: #21262d;
+  --destructive: #ef4444;
+  --success: #22c55e;
+
+  /* Hero gradient — darker for dark mode, multi-layer for depth */
+  --hero-gradient:
+    radial-gradient(
+      ellipse at 82% 5%,
+      rgba(94, 216, 166, 0.3) 0%,
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse at 5% 95%,
+      rgba(5, 14, 22, 0.88) 0%,
+      transparent 48%
+    ),
+    linear-gradient(148deg, #07101a 0%, #1a4d5f 38%, #2d7a94 65%, #3a9abb 100%);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --font-sans: var(--font-google-sans);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-google-sans), sans-serif;
 }
