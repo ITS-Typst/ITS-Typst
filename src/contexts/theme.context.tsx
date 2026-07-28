@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useState, type ReactNode } from 'react';
+import { createContext, useEffect, useState, type ReactNode } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -22,6 +22,13 @@ export function ThemeProvider({
       ? 'dark'
       : 'light'
   );
+
+  useEffect(() => {
+    if (!localStorage.getItem('theme')) {
+      localStorage.setItem('theme', theme);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function toggleTheme(): void {
     const next: Theme = theme === 'light' ? 'dark' : 'light';
