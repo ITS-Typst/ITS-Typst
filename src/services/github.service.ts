@@ -1,24 +1,9 @@
 import { GITHUB_CONFIG } from '@/config/github.config';
 import type { GitHubContributor, GitHubRepo } from '@/types/github.types';
-import { getCloudflareContext } from '@opennextjs/cloudflare';
 
-async function getGithubToken(): Promise<string | undefined> {
-  if (process.env.GITHUB_TOKEN) return process.env.GITHUB_TOKEN;
-
-  try {
-    const ctx = await getCloudflareContext({ async: true });
-    const env = ctx.env as Record<string, string | undefined>;
-    return env.GITHUB_TOKEN;
-  } catch {
-    return undefined;
-  }
-}
-
-async function getFetchOptions() {
-  const token = await getGithubToken();
-  console.log('[github] token present:', !!token);
+function getFetchOptions() {
+  const token = process.env.GITHUB_TOKEN;
   return {
-    next: { revalidate: 3600 },
     headers: {
       Accept: 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
@@ -32,17 +17,10 @@ async function fetchOrgRepos(): Promise<GitHubRepo[]> {
 
   const response = await fetch(
     `${apiBaseUrl}/orgs/${owner}/repos?per_page=100&type=public`,
-    await getFetchOptions()
+    getFetchOptions()
   );
 
-  if (!response.ok) {
-    console.error(
-      '[github] fetchOrgRepos failed:',
-      response.status,
-      response.statusText
-    );
-    return [];
-  }
+  if (!response.ok) return [];
   return response.json() as Promise<GitHubRepo[]>;
 }
 
@@ -53,7 +31,7 @@ async function fetchRepoContributors(
 
   const response = await fetch(
     `${apiBaseUrl}/repos/${owner}/${repoName}/contributors?per_page=100`,
-    await getFetchOptions()
+    getFetchOptions()
   );
 
   if (response.status === 404 || response.status === 204 || !response.ok) {

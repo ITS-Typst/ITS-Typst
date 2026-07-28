@@ -1,5 +1,7 @@
+'use client';
+
 import Image from 'next/image';
-import { fetchContributors } from '@/services/github.service';
+import { useEffect, useState } from 'react';
 import Skeleton from '@/components/ui/skeleton';
 import type { GitHubContributor } from '@/types/github.types';
 
@@ -28,8 +30,19 @@ export function ContributorsSkeleton(): React.JSX.Element {
   );
 }
 
-export default async function Contributors(): Promise<React.JSX.Element> {
-  const contributors = await fetchContributors();
+export default function Contributors(): React.JSX.Element {
+  const [contributors, setContributors] = useState<GitHubContributor[] | null>(
+    null
+  );
+
+  useEffect(() => {
+    fetch('/api/contributors')
+      .then((r) => r.json())
+      .then((data: GitHubContributor[]) => setContributors(data))
+      .catch(() => setContributors([]));
+  }, []);
+
+  if (contributors === null) return <ContributorsSkeleton />;
 
   return (
     <section
