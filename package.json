@@ -37,6 +37,11 @@
     "typescript": "^5"
   },
   "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "workerd",
+      "sharp"
+    ],
     "overrides": {
       "flatted": ">=3.4.2",
       "fast-uri": ">=3.1.2",
