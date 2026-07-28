@@ -10,33 +10,29 @@ export const TEMPLATES: Template[] = [
   {
     id: 'ta-s1',
     name: 'Tugas Akhir S1',
-    description:
-      'Template resmi penulisan Tugas Akhir Strata 1 sesuai panduan format akademik ITS terbaru. Dilengkapi cover, lembar pengesahan, dan daftar isi otomatis.',
+    description: 'Template Tugas Akhir S1.',
     tags: ['S1', 'Tugas Akhir'],
-    githubUrl: 'https://github.com/ITS-Typst/ITS-Typst',
+    githubUrl: 'https://github.com/ITS-Typst/template-buku-TA',
   },
   {
     id: 'proposal-ta-s1',
     name: 'Proposal Tugas Akhir S1',
-    description:
-      'Template proposal TA S1 terstruktur untuk pengajuan topik penelitian kepada dosen pembimbing. Format bab dan referensi siap pakai.',
+    description: 'Template Proposal Tugas Akhir S1.',
     tags: ['S1', 'Proposal'],
     githubUrl: 'https://github.com/ITS-Typst/template-proposal-TA',
   },
   {
     id: 'kerja-praktik',
     name: 'Kerja Praktik',
-    description:
-      'Template laporan Kerja Praktik lengkap dengan cover, lembar pengesahan, daftar isi, dan lampiran otomatis sesuai ketentuan ITS.',
+    description: 'Template Laporan Kerja Praktik.',
     tags: ['KP', 'Laporan'],
-    githubUrl: 'https://github.com/ITS-Typst/ITS-Typst',
+    githubUrl: 'https://github.com/ITS-Typst/template-buku-KP',
   },
   {
     id: 'magang',
     name: 'Magang',
-    description:
-      'Template laporan Magang industri yang rapi dan siap cetak. Menyesuaikan format pelaporan program magang di lingkungan ITS.',
+    description: 'Template Laporan Magang.',
     tags: ['Magang', 'Laporan'],
-    githubUrl: 'https://github.com/ITS-Typst/ITS-Typst',
+    githubUrl: 'https://github.com/ITS-Typst/template-buku-Magang',
   },
 ];
