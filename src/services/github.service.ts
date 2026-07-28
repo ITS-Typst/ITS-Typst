@@ -1,11 +1,14 @@
 import { GITHUB_CONFIG } from '@/config/github.config';
 import type { GitHubContributor, GitHubRepo } from '@/types/github.types';
 
+const githubToken = process.env.GITHUB_TOKEN;
+
 const FETCH_OPTIONS = {
   next: { revalidate: 3600 },
   headers: {
     Accept: 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28',
+    ...(githubToken && { Authorization: `Bearer ${githubToken}` }),
   },
 } as const;
 
