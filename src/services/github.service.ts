@@ -1,25 +1,25 @@
 import { GITHUB_CONFIG } from '@/config/github.config';
 import type { GitHubContributor, GitHubRepo } from '@/types/github.types';
 
-const githubToken = process.env.GITHUB_TOKEN;
-
-const FETCH_OPTIONS = {
-  next: { revalidate: 3600 },
-  headers: {
-    Accept: 'application/vnd.github+json',
-    'X-GitHub-Api-Version': '2022-11-28',
-    ...(githubToken && { Authorization: `Bearer ${githubToken}` }),
-  },
-} as const;
+function getFetchOptions() {
+  const token = process.env.GITHUB_TOKEN;
+  console.log('[github] token present:', !!token);
+  return {
+    next: { revalidate: 3600 },
+    headers: {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(token && { Authorization: `Bearer ${token}` }),
+    },
+  } as const;
+}
 
 async function fetchOrgRepos(): Promise<GitHubRepo[]> {
   const { owner, apiBaseUrl } = GITHUB_CONFIG;
 
-  console.log('[github] token present:', !!githubToken);
-
   const response = await fetch(
     `${apiBaseUrl}/orgs/${owner}/repos?per_page=100&type=public`,
-    FETCH_OPTIONS
+    getFetchOptions()
   );
 
   if (!response.ok) {
@@ -40,7 +40,7 @@ async function fetchRepoContributors(
 
   const response = await fetch(
     `${apiBaseUrl}/repos/${owner}/${repoName}/contributors?per_page=100`,
-    FETCH_OPTIONS
+    getFetchOptions()
   );
 
   if (response.status === 404 || response.status === 204 || !response.ok) {
