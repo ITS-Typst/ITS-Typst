@@ -15,12 +15,21 @@ const FETCH_OPTIONS = {
 async function fetchOrgRepos(): Promise<GitHubRepo[]> {
   const { owner, apiBaseUrl } = GITHUB_CONFIG;
 
+  console.log('[github] token present:', !!githubToken);
+
   const response = await fetch(
     `${apiBaseUrl}/orgs/${owner}/repos?per_page=100&type=public`,
     FETCH_OPTIONS
   );
 
-  if (!response.ok) return [];
+  if (!response.ok) {
+    console.error(
+      '[github] fetchOrgRepos failed:',
+      response.status,
+      response.statusText
+    );
+    return [];
+  }
   return response.json() as Promise<GitHubRepo[]>;
 }
 
