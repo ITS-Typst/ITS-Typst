@@ -13,7 +13,8 @@
     "format:write": "prettier --write",
     "format:check": "prettier --check .",
     "format": "pnpm run format:write \"**/*.{js,jsx,ts,tsx,json,md,css,mjs}\" && pnpm run lint:fix . && pnpm run lint:strict \"**/*.{js,jsx,ts,tsx}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },
   "dependencies": {
     "next": "16.2.6",
@@ -34,7 +35,8 @@
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.114.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
