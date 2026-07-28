@@ -39,16 +39,11 @@ export default async function Contributors(): Promise<React.JSX.Element> {
     >
       <div className='mx-auto max-w-6xl px-8'>
         <div className='max-w-xl'>
-          <p className='mb-3 text-sm font-semibold uppercase tracking-widest text-primary'>
-            Komunitas
-          </p>
           <h2
             id='contributors-heading'
             className='mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl'
           >
-            {contributors.length > 0
-              ? `${contributors.length} Kontributor`
-              : 'Kontributor'}
+            Komunitas
           </h2>
           <p className='text-base leading-relaxed text-muted'>
             Terima kasih kepada semua orang yang telah berkontribusi dalam

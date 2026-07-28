@@ -3,7 +3,8 @@ import { GITHUB_CONFIG } from '@/config/github.config';
 export default function Hero(): React.JSX.Element {
   return (
     <section
-      className='relative flex min-h-screen items-center overflow-hidden rounded-b-[4rem] pt-16'
+      id='hero'
+      className='relative flex items-center overflow-hidden rounded-br-[4rem] pb-16'
       style={{ background: 'var(--hero-gradient)' }}
     >
       {/* Noise / grain texture overlay */}
@@ -39,10 +40,6 @@ export default function Hero(): React.JSX.Element {
 
       <div className='relative mx-auto w-full max-w-6xl px-8 py-24'>
         <div className='max-w-2xl'>
-          <span className='mb-6 inline-block rounded-full border border-white/25 bg-white/15 px-4 py-1.5 text-sm font-medium text-white/90 backdrop-blur-sm'>
-            Institut Teknologi Sepuluh Nopember
-          </span>
-
           <h1 className='mb-6 text-5xl font-bold leading-[1.1] tracking-tight text-white md:text-7xl'>
             Template Typst
             <br />
@@ -72,6 +69,23 @@ export default function Hero(): React.JSX.Element {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* S-curve bottom: kiri droop ke bawah, kanan flat → combined dengan rounded-br-[4rem] jadi bentuk S */}
+      <div
+        className='pointer-events-none absolute bottom-0 left-0 w-full'
+        aria-hidden='true'
+      >
+        <svg
+          viewBox='0 0 1440 80'
+          preserveAspectRatio='none'
+          className='block h-16 w-full md:h-20'
+        >
+          <path
+            d='M 0,55 C 250,80 650,10 950,8 C 1100,6 1280,0 1440,0 L 1440,80 L 0,80 Z'
+            style={{ fill: 'var(--background)' }}
+          />
+        </svg>
       </div>
     </section>
   );

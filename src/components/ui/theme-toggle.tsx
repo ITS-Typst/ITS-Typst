@@ -10,7 +10,7 @@ export default function ThemeToggle(): React.JSX.Element {
     <button
       onClick={toggleTheme}
       aria-label={isDark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap'}
-      className='flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:bg-surface hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
+      className='flex h-9 w-9 items-center justify-center rounded-lg text-muted transition-colors hover:text-foreground'
     >
       {isDark ? <MoonIcon /> : <SunIcon />}
     </button>

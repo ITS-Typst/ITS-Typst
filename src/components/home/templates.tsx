@@ -9,9 +9,6 @@ export default function Templates(): React.JSX.Element {
     >
       <div className='mx-auto max-w-6xl px-8'>
         <div className='max-w-xl'>
-          <p className='mb-3 text-sm font-semibold uppercase tracking-widest text-primary'>
-            Open Source
-          </p>
           <h2
             id='templates-heading'
             className='mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl'
