@@ -11,7 +11,5 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
-  "vars": {
-    "GITHUB_TOKEN": ""
-  }
+  "vars": {}
 }
