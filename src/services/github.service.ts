@@ -20,7 +20,14 @@ async function fetchOrgRepos(): Promise<GitHubRepo[]> {
     getFetchOptions()
   );
 
-  if (!response.ok) return [];
+  if (!response.ok) {
+    console.error(
+      '[github] fetchOrgRepos failed:',
+      response.status,
+      response.statusText
+    );
+    return [];
+  }
   return response.json() as Promise<GitHubRepo[]>;
 }
 
