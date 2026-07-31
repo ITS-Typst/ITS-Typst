@@ -21,11 +21,8 @@ async function fetchOrgRepos(): Promise<GitHubRepo[]> {
   );
 
   if (!response.ok) {
-    console.error(
-      '[github] fetchOrgRepos failed:',
-      response.status,
-      response.statusText
-    );
+    const body = await response.text();
+    console.error('[github] fetchOrgRepos failed:', response.status, body);
     return [];
   }
   return response.json() as Promise<GitHubRepo[]>;
