@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // pdfjs-dist is only imported client-side (inside useEffect) — no canvas needed
+  turbopack: {},
 };
 
 export default nextConfig;

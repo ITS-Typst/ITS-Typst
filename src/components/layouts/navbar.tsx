@@ -27,11 +27,11 @@ export default function Navbar(): React.JSX.Element {
       }`}
     >
       <nav
-        className='mx-auto flex h-16 max-w-6xl items-center justify-between px-8'
+        className='mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-8'
         aria-label='Navigasi utama'
       >
-        <Link href='/' className='flex items-center gap-2.5'>
-          <span className='text-lg font-bold tracking-tight text-foreground'>
+        <Link href='/' className='flex items-center gap-3'>
+          <span className='text-base font-bold tracking-tight text-foreground sm:text-lg'>
             ITS <span className='text-primary'>Typst</span>
           </span>
         </Link>

@@ -1,6 +1,8 @@
 import { fetchContributors } from '@/services/github.service';
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600; // revalidate setiap 1 jam
+
 export async function GET() {
   console.log(
     '[api/contributors] token:',

@@ -10,7 +10,8 @@ function getFetchOptions() {
       'User-Agent': 'ITS-Typst',
       ...(token && { Authorization: `Bearer ${token}` }),
     },
-  } as const;
+    next: { revalidate: 3600 },
+  };
 }
 
 async function fetchOrgRepos(): Promise<GitHubRepo[]> {

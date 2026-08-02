@@ -9,9 +9,9 @@ export function ContributorsSkeleton(): React.JSX.Element {
   const skeletonKeys = Array.from({ length: 12 }, (_, i) => `skeleton-${i}`);
 
   return (
-    <section className='py-24' aria-label='Memuat kontributor'>
-      <div className='mx-auto max-w-6xl px-8'>
-        <Skeleton className='mb-4 h-3.5 w-24' />
+    <section className='py-12 md:py-24' aria-label='Memuat kontributor'>
+      <div className='mx-auto max-w-6xl px-4 md:px-8'>
+        <Skeleton className='mb-4 h-4 w-24' />
         <Skeleton className='mb-3 h-9 w-56 rounded-xl' />
         <Skeleton className='mb-12 h-4 w-80' />
         <ul
@@ -47,10 +47,10 @@ export default function Contributors(): React.JSX.Element {
   return (
     <section
       id='contributors'
-      className='py-24'
+      className='py-12 md:py-24'
       aria-labelledby='contributors-heading'
     >
-      <div className='mx-auto max-w-6xl px-8'>
+      <div className='mx-auto max-w-6xl px-4 md:px-8'>
         <div className='max-w-xl'>
           <h2
             id='contributors-heading'

@@ -1,14 +1,8 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import type { Metadata } from 'next';
-import { Google_Sans } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/contexts/theme.context';
 import { SITE_CONFIG, GITHUB_CONFIG } from '@/config/github.config';
-
-const googleSans = Google_Sans({
-  variable: '--font-google-sans',
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-});
 
 const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem('theme'),p=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.classList.toggle('dark',(t||p)==='dark')}catch(e){}})()`;
 
@@ -76,13 +70,18 @@ export default function RootLayout({
   return (
     <html lang='id' suppressHydrationWarning>
       <head>
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link
+          rel='stylesheet'
+          href='https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap'
+        />
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${googleSans.variable} antialiased`}>
+      <body className='antialiased'>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

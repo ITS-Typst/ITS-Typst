@@ -1,7 +1,12 @@
 @import 'tailwindcss';
 
 /* Class-based dark mode variant for Tailwind v4 */
-@variant dark (&:where(.dark, .dark *));
+@customvariant dark (&:where(.dark, .dark *));
+
+/* Font */
+:root {
+  --font-google-sans: 'Google Sans', sans-serif;
+}
 
 /* Color tokens — Light mode */
 :root {

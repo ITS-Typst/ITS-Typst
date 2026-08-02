@@ -4,6 +4,8 @@ export interface Template {
   description: string;
   tags: string[];
   githubUrl: string;
+  previewUrl?: string;
+  previewImage?: string;
 }
 
 export const TEMPLATES: Template[] = [
@@ -13,6 +15,8 @@ export const TEMPLATES: Template[] = [
     description: 'Template Tugas Akhir S1.',
     tags: ['S1', 'Tugas Akhir'],
     githubUrl: 'https://github.com/ITS-Typst/template-buku-TA',
+    previewUrl: '/demo/buku-TA.pdf',
+    previewImage: '/images/preview-buku-TA.webp',
   },
   {
     id: 'proposal-ta-s1',
@@ -20,6 +24,8 @@ export const TEMPLATES: Template[] = [
     description: 'Template Proposal Tugas Akhir S1.',
     tags: ['S1', 'Proposal'],
     githubUrl: 'https://github.com/ITS-Typst/template-proposal-TA',
+    previewUrl: '/demo/proposal-TA.pdf',
+    previewImage: '/images/preview-proposal-TA.webp',
   },
   {
     id: 'kerja-praktik',
