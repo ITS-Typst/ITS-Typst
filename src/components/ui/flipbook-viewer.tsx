@@ -61,15 +61,14 @@ export default function FlipbookViewer({
       const transform =
         outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : undefined;
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (
-        page.render({
+      page
+        .render({
           canvas: null,
           canvasContext: ctx,
           transform,
           viewport,
-        }) as any
-      ).promise.catch(console.error);
+        })
+        .promise.catch(console.error);
     });
 
     return () => {
