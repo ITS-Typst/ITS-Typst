@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useEffect, useState, type ReactNode } from 'react';
+import { createContext, useState, type ReactNode } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -11,29 +11,21 @@ export interface ThemeContextValue {
 
 export const ThemeContext = createContext<ThemeContextValue | null>(null);
 
+const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
+
 export function ThemeProvider({
   children,
+  initialTheme = 'light',
 }: {
   children: ReactNode;
+  initialTheme?: Theme;
 }): React.JSX.Element {
-  const [theme, setTheme] = useState<Theme>(() =>
-    typeof document !== 'undefined' &&
-    document.documentElement.classList.contains('dark')
-      ? 'dark'
-      : 'light'
-  );
-
-  useEffect(() => {
-    if (!localStorage.getItem('theme')) {
-      localStorage.setItem('theme', theme);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [theme, setTheme] = useState<Theme>(initialTheme);
 
   function toggleTheme(): void {
     const next: Theme = theme === 'light' ? 'dark' : 'light';
     setTheme(next);
-    localStorage.setItem('theme', next);
+    document.cookie = `theme=${next}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
     document.documentElement.classList.toggle('dark', next === 'dark');
   }
 

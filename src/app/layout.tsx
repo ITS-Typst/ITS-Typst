@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import './globals.css';
 import { ThemeProvider } from '@/contexts/theme.context';
 import { SITE_CONFIG, GITHUB_CONFIG } from '@/config/github.config';
-
-const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem('theme'),p=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.classList.toggle('dark',(t||p)==='dark')}catch(e){}})()`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -64,25 +63,29 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: React.PropsWithChildren): React.JSX.Element {
+}: React.PropsWithChildren): Promise<React.JSX.Element> {
+  const cookieStore = await cookies();
+  const themeCookie = cookieStore.get('theme')?.value;
+  const initialTheme: 'light' | 'dark' =
+    themeCookie === 'dark' ? 'dark' : 'light';
+
   return (
-    <html lang='id' suppressHydrationWarning>
+    <html lang='id' className={initialTheme === 'dark' ? 'dark' : undefined}>
       <head>
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link
           rel='stylesheet'
           href='https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap'
         />
-        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className='antialiased'>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider initialTheme={initialTheme}>{children}</ThemeProvider>
       </body>
     </html>
   );
