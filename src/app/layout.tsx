@@ -72,7 +72,11 @@ export default async function RootLayout({
     themeCookie === 'dark' ? 'dark' : 'light';
 
   return (
-    <html lang='id' className={initialTheme === 'dark' ? 'dark' : undefined}>
+    <html
+      lang='id'
+      className={initialTheme === 'dark' ? 'dark' : undefined}
+      data-scroll-behavior='smooth'
+    >
       <head>
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link

@@ -21,7 +21,9 @@
     "next": "16.2.12",
     "pdfjs-dist": "^6.2.108",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.3.0",
