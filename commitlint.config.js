@@ -18,6 +18,7 @@ module.exports = {
         'perf',
         'vercel',
         'debug',
+        'build',
       ],
     ],
   },

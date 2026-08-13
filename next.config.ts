@@ -11,9 +11,16 @@ const nextConfig: NextConfig = {
     ],
   },
   // pdfjs-dist is only imported client-side (inside useEffect) — no canvas needed
-  turbopack: {},
+  turbopack: {
+    rules: {
+      '*.md': {
+        loaders: ['raw-loader'],
+        as: '*.js',
+      },
+    },
+  },
   webpack(config) {
-    config.module.rules.push({ test: /\.md$/, type: 'asset/source' });
+    config.module.rules.push({ test: /\.md$/, use: 'raw-loader' });
     return config;
   },
 };

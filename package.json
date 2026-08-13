@@ -38,6 +38,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
+    "raw-loader": "^4.0.2",
     "tailwindcss": "^4",
     "typescript": "^5",
     "wrangler": "^4.114.0"
