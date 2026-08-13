@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Navbar from '@/components/layouts/navbar';
@@ -7,7 +5,8 @@ import Footer from '@/components/layouts/footer';
 import DocsSidebar from '@/components/docs/sidebar';
 import DocsContent from '@/components/docs/content';
 import Breadcrumb from '@/components/ui/breadcrumb';
-import { docsNav, DOCS_DIR } from '@/config/docs.config';
+import { docsNav } from '@/config/docs.config';
+import { docsContent } from '@/lib/docs-content';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -37,10 +36,8 @@ export default async function DocsSlugPage({
   const meta = docsNav.find((p) => p.slug === slug);
   if (!meta) notFound();
 
-  const filePath = path.join(process.cwd(), DOCS_DIR, `${slug}.md`);
-  if (!fs.existsSync(filePath)) notFound();
-
-  const content = fs.readFileSync(filePath, 'utf-8');
+  const content = docsContent[slug];
+  if (!content) notFound();
 
   return (
     <>
